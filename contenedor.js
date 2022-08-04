@@ -12,10 +12,28 @@ class Contenedor {
             
             if (dataFileParse.length > 0){
                 await fs.promises.writeFile(this.ruta, JSON.stringify([ ...dataFileParse, {...obj, id: dataFileParse[dataFileParse.length-1].id + 1} ], null, 2), 'utf-8')
-                return dataFileParse[dataFileParse.length-1].id + 1
+                return {...obj, id: dataFileParse[dataFileParse.length-1].id + 1}
             }else{
                 await fs.promises.writeFile(this.ruta, JSON.stringify([{...obj, id: 1}], null, 2))
                 return 1
+            }
+            
+        }catch(error){
+            console.log(error)  
+        }
+    }
+
+    async updateById(id, obj){
+        try{
+            let dataFile = await fs.promises.readFile(this.ruta, 'utf-8');
+            let dataFileParse = JSON.parse(dataFile)
+            let producto = dataFileParse.find(prod => prod.id === id)
+            if (producto){
+                let dataFileParseFiltrado = dataFileParse.filter(prod => prod.id !== id)
+                await fs.promises.writeFile(this.ruta, JSON.stringify([...dataFileParseFiltrado, {...obj, id: id}], null, 2))
+                return {...obj, id: id}
+            }else{
+                return {error: 'No existe el producto'}
             }
             
         }catch(error){
@@ -31,7 +49,7 @@ class Contenedor {
             if(producto){
                 return producto
             }else{
-                return null
+                return {error: 'No se encontro el producto'}
             }
         }catch(error){
             console.log(error)
@@ -45,7 +63,7 @@ class Contenedor {
             if(dataFileParse){
                 return dataFileParse
             }else{
-                return null
+                return {error: 'No existen productos'}
             }
         }catch(error){
             console.log(error)
@@ -60,9 +78,9 @@ class Contenedor {
             if(producto){
                 let dataFileParseFiltrado = dataFileParse.filter(producto => producto.id !== id)
                 await fs.promises.writeFile(this.ruta, JSON.stringify(dataFileParseFiltrado, null, 2))
-                console.log('Se elimino el producto')  
+                return {msg: `Se elimino el producto con el id: ${id}`} 
             } else{
-                console.log('No se encontro el producto')
+                return {error: 'No se encontro el producto'}
             }
         }catch(error){
             console.log(error)

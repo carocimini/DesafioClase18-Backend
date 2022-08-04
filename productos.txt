@@ -3,21 +3,18 @@
     "id": 1,
     "titulo": "Tabaco Flandria Sauvage",
     "precio": 850,
-    "categoria": "Tabaco",
-    "descripcion": "Tabaco Natural Suave"
+    "thumbnail": "www.google.com"
   },
   {
     "id": 2,
     "titulo": "Tabaco Flandria Vainilla",
     "precio": 850,
-    "categoria": "Tabaco",
-    "descripcion": "Tabaco sabor vainilla"
+    "thumbnail": "www.google.com"
   },
   {
-    "id": 3,
     "titulo": "Tabaco Flandria Black",
     "precio": 850,
-    "categoria": "Tabaco",
-    "descripcion": "Tabaco Negro intenso"
+    "thumbnail": "www.google.com",
+    "id": 3
   }
 ]
