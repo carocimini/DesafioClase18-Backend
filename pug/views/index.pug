@@ -1,0 +1,35 @@
+html
+    head 
+        title=titulo 
+        script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js'
+            integrity='sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa'
+            crossorigin="anonymous"
+        )
+        link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" 
+            rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+            crossorigin="anonymous"
+        )
+
+    body 
+        include partials/title.pug
+        div(class="container")
+            br
+            h2="Catálogo de Productos"
+            div(class="col d-flex flex-column align-items-center")
+                if exist
+                    div(class="d-flex p-2 bd-highlight flex-wrap")
+                        each val in list
+                            div(class="card " style="width: 15rem; margin: 1rem")
+                                img(src=val.thumbnail class=card-img-top)
+                                div(class="card-body")
+                                    h5(class="card-title")=val.titulo
+                                    p(class="card-text")=val.precio
+                else
+                    div(class="col d-flex flex-column align-items-center")
+                        br
+                        h3="No hay productos en Stock"
+                        br
+            div(class="col d-flex flex-column align-items-center")
+                a(href="/" class="btn btn-dark")="Ir al Administrador de productos"
+        br
+        include partials/footer.pug
