@@ -16,11 +16,5 @@
     "precio": 850,
     "thumbnail": "https://parainfernalia.com.ar/wp-content/uploads/2017/08/flandria-tabaco-negro-grow-shop.jpg",
     "id": 3
-  },
-  {
-    "titulo": "Tabaco Look Out Holland",
-    "precio": "665",
-    "thumbnail": "https://parainfernalia.com.ar/wp-content/uploads/2017/09/tabaco-look-out-holland-precio.jpg",
-    "id": 4
   }
 ]
