@@ -1,0 +1,33 @@
+<br>
+{{> title }}
+    <div class="container">
+        <br>
+        <h2>Catálogo de Productos</h2>
+        <div class="col d-flex flex-column align-items-center">
+            
+            {{#if exist}}
+                <div class="d-flex p-2 bd-highlight flex-wrap">
+                    {{#each list}}
+                        <div class="card " style="width: 18rem; margin: 1rem;">
+                            <img src="{{thumbnail}}" class="card-img-top" alt="{{thumbnail}}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{titulo}}</h5>
+                                <p class="card-text">$ {{precio}}</p>
+                            </div>
+                        </div>
+                    {{/each}}
+                </div>
+                {{else}}
+                    <div class="col d-flex flex-column align-items-center">
+                        <br>
+                        <h3>No hay productos en Stock</h3>
+                        <br>
+                    </div>    
+            {{/if}}
+        </div>
+        <div class="col d-flex flex-column align-items-center">
+            <a href="/" class="btn btn-dark">Ir al Administrador de productos</a>
+        </div>
+    </div>
+    <br>
+    {{> footer }}
