@@ -1,23 +1,59 @@
 const Contenedor = require("./contenedor")
 const contenedor = new Contenedor('./productos.txt')
+const mensajes = new Contenedor('./mensajes.txt')
 
 const handlebars = require('express-handlebars')
 
 const express =require('express')
 
+const {Server: HttpServer} = require ('http')
+const {Server: IoServer} = require ('socket.io')
+
 const app = express()
+const httpServer = new HttpServer (app)
+const io = new IoServer (httpServer)
 
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false}))
 app.use(express.static('public'))
 
+
+io.on('connection', async (socket) => {
+    let buzonChat = await mensajes.getAll()
+    console.log('usuario conectado')
+    const mensaje = {
+        mensaje: 'ok',
+        buzonChat
+    }
+    socket.emit('mensaje-servidor', mensaje)
+
+    socket.on('mensaje-nuevo', async (msj, cb) => {
+        buzonChat.push(msj)
+        const mensaje = {
+            mensaje: 'mensaje nuevo',
+            buzonChat
+        }
+
+        const id = new Date().getTime()
+        io.sockets.emit('mensaje-servidor', mensaje)
+        cb(id)
+        await mensajes.save({
+            id,
+            mail: msj.mail,
+            mensaje: msj.mensaje,
+            fecha: msj.fecha
+        })
+    })
+})
+
+
 app.engine(
     'hbs', 
     handlebars.engine({
         extname: '.hbs',  
-        defaultLayout: 'main.hbs' ,          
-        layoutsDir: __dirname + '/views',
+        defaultLayout: '' ,          
+        layoutsDir: __dirname + '',
         partialsDir: __dirname + '/views/partials'
     })
 )
@@ -26,31 +62,24 @@ app.set('view engine', 'hbs')
 app.set('views', './views/layouts')
 
 app.get('/', async (req, res) => {
-    res.render('prodAdmin',{
-        titulo: "Tabaqueria Blend&roll",
-        catalogo: false
-    })
-})
-
-app.get('/productos', async (req, res) => {
     let respuesta = await contenedor.getAll()
-    const exist = respuesta.length
-    res.render("index", {
-        titulo: "Tabaqueria Blend&roll",
-        list: respuesta,
-        exist,
-    })
+        const exist = respuesta.length
+        res.render("index", {
+            list: respuesta,
+            exist,
+            catalogo: true
+        })
 })
 
-app.post('/productos/admin', async (req, res) => {
+app.post('/', async (req, res) => {
     const {titulo, precio, thumbnail} = req.body
     let respuesta = await contenedor.save({titulo, precio, thumbnail})
     console.log(respuesta)
-    res.redirect('/productos')
+    res.redirect('/')
 })
 
 const PORT = 8080
-const server = app.listen(PORT, err =>{
+const server = httpServer.listen(PORT, err =>{
     if (err) throw err
     console.log(`Escuchando en el puerto: ${server.address().port}`)
 })
