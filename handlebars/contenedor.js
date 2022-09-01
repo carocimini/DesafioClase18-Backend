@@ -1,125 +1,71 @@
-const fs = require('fs');
-
 class Contenedor {
-    constructor(ruta){
-        this.ruta = ruta
-    }
+	constructor(knex, tabla) {
+		this.knex = knex
+		this.tabla = tabla
+	}
 
-    async save(obj){
-        try{
-            let dataFile = await fs.promises.readFile(this.ruta, 'utf-8');
-            let dataFileParse = JSON.parse(dataFile)
-            
-            if (dataFileParse.length > 0){
-                await fs.promises.writeFile(this.ruta, JSON.stringify([ ...dataFileParse, {...obj, id: dataFileParse[dataFileParse.length-1].id + 1} ], null, 2), 'utf-8')
-                return {...obj, id: dataFileParse[dataFileParse.length-1].id + 1}
-            }else{
-                await fs.promises.writeFile(this.ruta, JSON.stringify([{...obj, id: 1}], null, 2))
-                return 1
-            }
-            
-        }catch(error){
-            console.log(error)  
-        }
-    }
+	// Guardar objeto (producto o mensaje)
+	async save(obj) {
+		try {
+			await this.knex(this.tabla).insert(obj)
+			return { message: "Se agrego el producto" }
+		} catch (error) {
+			console.log(`Error al guardar el producto: ${error}`)
+		}
+	}
 
-    async updateById(id, obj){
-        try{
-            let dataFile = await fs.promises.readFile(this.ruta, 'utf-8');
-            let dataFileParse = JSON.parse(dataFile)
-            let producto = dataFileParse.find(prod => prod.id === id)
-            if (producto){
-                let dataFileParseFiltrado = dataFileParse.filter(prod => prod.id !== id)
-                await fs.promises.writeFile(this.ruta, JSON.stringify([...dataFileParseFiltrado, {...obj, id: id}], null, 2))
-                return {...obj, id: id}
-            }else{
-                return {error: 'No existe el producto'}
-            }
-            
-        }catch(error){
-            console.log(error)  
-        }
-    }
+	// Buscar producto por id
+	async getById(id) {
+		try {
+			let item = await this.knex.from(this.tabla).select("*").where({ id: id })
+			return item[0]
+		} catch (error) {
+			console.log(`Error al buscar el producto: ${error}`)
+		}
+	}
 
-    async getByID(id){
-        try{
-            let dataFile = await fs.promises.readFile(this.ruta, 'utf-8')
-            let dataFileParse = JSON.parse(dataFile)
-            let producto = dataFileParse.find(producto => producto.id === id)
-            if(producto){
-                return producto
-            }else{
-                return {error: 'No se encontro el producto'}
-            }
-        }catch(error){
-            console.log(error)
-        }
-    }
+	//Buscar todos los productos
+	async getAll() {
+		try {
+			let items = await this.knex.from(this.tabla).select("*")
+			return items
+		} catch (error) {
+			console.log(error)
+		}
+	}
 
-    async getAll(){
-        try{
-            let dataFile = await fs.promises.readFile(this.ruta, 'utf-8')
-            let dataFileParse = JSON.parse([dataFile])
-            if(dataFileParse){
-                return dataFileParse
-            }else{
-                return {error: 'No existen productos'}
-            }
-        }catch(error){
-            console.log(error)
-        }
-    }
+	async updateById(id, product) {
+		try {
+			console.log(product)
+			await this.knex
+				.from(this.tabla)
+				.where({ id: id })
+				.update({ ...product })
+			return { message: "Se actualizo el producto" }
+		} catch (error) {
+			console.log(`Error al actualizar el producto: ${error}`)
+		}
+	}
 
-    async delete(id){
-        try{
-            let dataFile = await fs.promises.readFile(this.ruta, 'utf-8')
-            let dataFileParse = JSON.parse(dataFile)
-            let producto = dataFileParse.find(producto => producto.id === id)
-            if(producto){
-                let dataFileParseFiltrado = dataFileParse.filter(producto => producto.id !== id)
-                await fs.promises.writeFile(this.ruta, JSON.stringify(dataFileParseFiltrado, null, 2))
-                return {msg: `Se elimino el producto con el id: ${id}`} 
-            } else{
-                return {error: 'No se encontro el producto'}
-            }
-        }catch(error){
-            console.log(error)
-        }
-    }
+	// Eliminar producto por id
+	async deleteById(id) {
+		try {
+			await this.knex.from(this.tabla).where({ id: id }).del()
+			return { message: "Item eliminado" }
+		} catch (error) {
+			console.log(`Error al eliminar el item: ${error}`)
+		}
+	}
 
-    async deleteAll(){try{
-        let dataFile = await fs.promises.readFile(this.ruta, 'utf-8')
-        let dataFileParse = JSON.parse(dataFile)
-        if(dataFileParse.length){
-            await fs.promises.writeFile(this.ruta, JSON.stringify([], null, 2))
-            console.log('Se eliminaron todos los productos')
-        }else{
-            console.log('No hay productos para eliminar')
-        }
-    }catch(error){
-        console.log(error)
-    }
-        
-    }
-
-    async getRandom(){
-        try{
-            let dataFile = await fs.promises.readFile(this.ruta, 'utf-8')
-            let dataFileParse = JSON.parse(dataFile)
-            let max = dataFileParse.length
-            let min = 0
-            let id = Math.ceil(Math.random()* (max - min))
-            let producto = dataFileParse.find(producto => producto.id === id)
-            if(producto){
-                console.log(producto)
-                return producto
-            }else {
-                console.log("sin resultados")
-            }
-        }catch (error){
-            console.log(error)
-        }
-    }
+	// Eliminar todos los productos
+	async deleteAll() {
+		try {
+			await this.knex.from(this.tabla).del()
+			return { message: "Se eliminaron todos los productos" }
+		} catch (error) {
+			console.log(`Error al eliminar los productos: ${error}`)
+		}
+	}
 }
 
 module.exports = Contenedor

@@ -1,13 +1,20 @@
 const Contenedor = require("./contenedor")
-const contenedor = new Contenedor('./productos.txt')
-const mensajes = new Contenedor('./mensajes.txt')
-
 const handlebars = require('express-handlebars')
 
 const express =require('express')
 
+const { optionsMdb } = require("./mariaDB/connection")
+const { optionsSqlite } = require("./sqlite3/connection")
+
+const knexMariaDB = require("knex")(optionsMdb)
+const knexSqlite3 = require("knex")(optionsSqlite)
+
+const contenedor = new Contenedor(knexMariaDB, "productos")
+const mensajes = new Contenedor(knexSqlite3, "mensajes")
+
 const {Server: HttpServer} = require ('http')
 const {Server: IoServer} = require ('socket.io')
+
 
 const app = express()
 const httpServer = new HttpServer (app)
