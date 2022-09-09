@@ -1,0 +1,121 @@
+[{
+  "_id": {
+    "$oid": "631b7ba26bed48da01068807"
+  },
+  "fecha": {
+    "$timestamp": {
+      "t": 1662745548,
+      "i": 1
+    }
+  },
+  "mail": "caro.cimini@gmail.com",
+  "mensaje": "probando mensajeria"
+},{
+  "_id": {
+    "$oid": "631b7bd06bed48da01068808"
+  },
+  "fecha": {
+    "$timestamp": {
+      "t": 1662745604,
+      "i": 1
+    }
+  },
+  "mail": "monicalcoderch@gmail.com",
+  "mensaje": "ya realice mi compra"
+},{
+  "_id": {
+    "$oid": "631b7c076bed48da01068809"
+  },
+  "fecha": {
+    "$timestamp": {
+      "t": 1662745649,
+      "i": 1
+    }
+  },
+  "mail": "rami.cimini@gmail.com",
+  "mensaje": "quiero realizar un cambio"
+},{
+  "_id": {
+    "$oid": "631b7c346bed48da0106880a"
+  },
+  "fecha": {
+    "$timestamp": {
+      "t": 1662745688,
+      "i": 1
+    }
+  },
+  "mail": "cesar.cimini@yahoo.com.ar",
+  "mensaje": "tengo una duda"
+},{
+  "_id": {
+    "$oid": "631b7c5b6bed48da0106880b"
+  },
+  "fecha": {
+    "$timestamp": {
+      "t": 1662745730,
+      "i": 1
+    }
+  },
+  "mail": "vcoderch@hotmail.com",
+  "mensaje": "quiero que me contacten"
+},{
+  "_id": {
+    "$oid": "631b7c876bed48da0106880c"
+  },
+  "fecha": {
+    "$timestamp": {
+      "t": 1662745775,
+      "i": 1
+    }
+  },
+  "mail": "nico.cimini@gmail.com",
+  "mensaje": "cuando entregan"
+},{
+  "_id": {
+    "$oid": "631b7cb36bed48da0106880d"
+  },
+  "fecha": {
+    "$timestamp": {
+      "t": 1662745814,
+      "i": 1
+    }
+  },
+  "mail": "mcoderch@hotmail.com",
+  "mensaje": "soy mayorista"
+},{
+  "_id": {
+    "$oid": "631b7cec6bed48da0106880e"
+  },
+  "fecha": {
+    "$timestamp": {
+      "t": 1662745875,
+      "i": 1
+    }
+  },
+  "mail": "andrius.alf@hotmail.com",
+  "mensaje": "que dias abren"
+},{
+  "_id": {
+    "$oid": "631b7d196bed48da0106880f"
+  },
+  "fecha": {
+    "$timestamp": {
+      "t": 1662745961,
+      "i": 1
+    }
+  },
+  "mail": "jbossi@hotmail.com",
+  "mensaje": "soy vendedor"
+},{
+  "_id": {
+    "$oid": "631b7d6c6bed48da01068810"
+  },
+  "fecha": {
+    "$timestamp": {
+      "t": 1662746013,
+      "i": 1
+    }
+  },
+  "mail": "robecampos@gmail.com",
+  "mensaje": "prueba tecnica"
+}]

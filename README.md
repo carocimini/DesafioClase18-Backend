@@ -1,19 +1,25 @@
-# Desafío Clase 10: Motores de plantillas
+# Desafío Clase 18: Mongodb
 #### Curso: Backend Coderhouse
+==============================
 
-Para incializar y probar los programas de debe ejecutar ```npm install```
-y luego ```nodemon server.js``` dentro de la carpeta correspondiente al 
-motor de plantillas con el que se desea trabajar.
+Se creo base de datos ecommerce con 2 colecciones: mensajes y productos.
+A cada coleccion se le agregaron 10 documentos.
+En el proyecto se encuentran enlistados los documentos de las respectivas colecciones: mensajes.json y productos.json.
 
-- El endpoint está en puerto 8080.
+Se realizo CRUD sobre las colecciones de productos:
+---------------------------------------------------
 
-## Conclusión
-Habiendo probado los 3 motores de plantillas, me resulto mas agradable el uso de pug por su sintaxis mas clara, simple
-y por que reduce la cantidad de lineas de codigo al no tener que cerrar las etiquetas html. Requiere menos lineas 
-de configuracion que handlebars.
-Por otro lado ejs que tambien es mas simple de configurar que handlebars, no me resulta facil su lectura
-y es bastante engorroso estar tipeando tanto <% %>, ademas tuve que instalar una extension
-para que me resultara mas claro por que un primer momento crei me estaba indicando error al poner las
-<% %> de color rojo y todo el contenido en blanco sin distinción entre comandos y texto.
+* Se agrego un producto mas a la coleccion productos
+* Se realizaron consultas por nombre de productos:
+    * Se consultaron los productos que tengan precio menor a 1000
+    * Se consultaron los productos que tengan precio entre 1000 y 3000
+    * Se consultaron los productos con precio mayor a 3000
+    * Se consulto el tercer producto mas barato
+* Se actualizaron todos los productos agregando el campo stock de valor 100
+* Se cambio a 0 el stock de todos los productos cuyo precio sea mayor a 4000
+* Se eliminaron todos los productos con precio menor a 1000
+
+Se podran encontrar las queries realizadas en el archivo queries.md
+
 
 #### Carola Cimini

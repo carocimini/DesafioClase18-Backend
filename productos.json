@@ -1,0 +1,71 @@
+[{
+  "_id": {
+    "$oid": "631b7e756bed48da01068813"
+  },
+  "titulo": "Tabaco Flandria Sauvage",
+  "precio": 120,
+  "thumbnail": "https://parainfernalia.com.ar/wp-content/uploads/2017/08/flandria-sauvage-tabaco-venta.jpg"
+},{
+  "_id": {
+    "$oid": "631b7ee86bed48da01068814"
+  },
+  "titulo": "Tabaco Flandria Vainilla",
+  "precio": 580,
+  "thumbnail": "https://parainfernalia.com.ar/wp-content/uploads/2017/08/flandria-tabaco-vainilla-fumador.jpg"
+},{
+  "_id": {
+    "$oid": "631b7fc66bed48da01068816"
+  },
+  "titulo": "Tabaco Flandria Black",
+  "precio": 900,
+  "thumbnail": "https://parainfernalia.com.ar/wp-content/uploads/2017/08/flandria-tabaco-negro-grow-shop.jpg"
+},{
+  "_id": {
+    "$oid": "631b801a6bed48da01068817"
+  },
+  "titulo": "Tabaco Pueblo Azul",
+  "precio": 1280,
+  "thumbnail": "https://www.distribuidorapop.com.ar/wp-content/uploads/2017/05/pueblo-azul-tabaco-venta.jpg"
+},{
+  "_id": {
+    "$oid": "631b81206bed48da01068818"
+  },
+  "titulo": "Tabaco Saints Natural",
+  "precio": "1700",
+  "thumbnail": "https://parainfernalia.com.ar/wp-content/uploads/2017/09/tabaco-saints-precio.jpg"
+},{
+  "_id": {
+    "$oid": "631b81a96bed48da01068819"
+  },
+  "titulo": "TABACO SAYRI CLARO",
+  "precio": 2300,
+  "thumbnail": "https://parainfernalia.com.ar/wp-content/uploads/2017/09/tabaco-sayri-claro-precio.jpg"
+},{
+  "_id": {
+    "$oid": "631b81ed6bed48da0106881a"
+  },
+  "titulo": "TABACO ACHALAY MENTA",
+  "precio": 2860,
+  "thumbnail": "https://parainfernalia.com.ar/wp-content/uploads/2021/01/tabaco-achalay-menta-venta.jpg"
+},{
+  "_id": {
+    "$oid": "631b823b6bed48da0106881b"
+  },
+  "titulo": "TABACO VAN HÄASEN MIDDLE",
+  "precio": 3350,
+  "thumbnail": "https://parainfernalia.com.ar/wp-content/uploads/2017/04/tabaco-van-haasen-middle-tabaqueria.jpg"
+},{
+  "_id": {
+    "$oid": "631b82886bed48da0106881c"
+  },
+  "titulo": "TABACO FLANDRIA ECO",
+  "precio": 4320,
+  "thumbnail": "https://parainfernalia.com.ar/wp-content/uploads/2017/08/flandria-eco-tabaco-mayorista.jpg"
+},{
+  "_id": {
+    "$oid": "631b82c46bed48da0106881d"
+  },
+  "titulo": "TABACO VAN HÄASEN INTENSE",
+  "precio": 4990,
+  "thumbnail": "https://parainfernalia.com.ar/wp-content/uploads/2017/04/tabaco-van-haasen-intense-tabaqueria-precio.jpg"
+}]
